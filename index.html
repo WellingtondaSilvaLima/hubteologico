@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HUB Teológico - Recursos, debates e vídeos para estudos teológicos. Conteúdo de qualidade para aprofundamento na fé cristã.">
+    <meta name="keywords" content="teologia, estudos bíblicos, debates teológicos, vídeos cristãos, hub teológico">
+    <meta name="author" content="HUB Teológico">
+    <meta name="robots" content="index, follow">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="assets/logo-hub.svg" type="image/x-icon">
+    
+    <title>HUB Teológico - Recursos para Estudos Teológicos</title>
+    
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-container">
+                <div class="logo-icon"><img src="assets/logo-hub.svg" alt="Logo do HUB Teológico."></div>
+                <div class="logo-text">HUB <span>Teológico</span></div>
+            </div>
+            <ul class="nav-links">
+                <li><a onclick="showPage('home')">🏠 HUB</a></li>
+                <li><a onclick="showPage('debates')">📖 Debates</a></li>
+                <li><a onclick="showPage('videos')">🎥 Vídeos</a></li>
+                <li><a onclick="showPage('apoia-se')">💝 Apoia-se</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Página HUB -->
+        <div id="home" class="page active">
+            <div class="banner" onclick="openAmazonLink('https://amzn.to/3S4NdjH')">
+                <a href="#" onclick="return false;">📚 Loja Recomendada - Clique aqui para apoiar o HUB Teológico!</a>
+            </div>
+            
+            <h2>Bem-vindo ao HUB Teológico</h2>
+            <p>Seu centro de recursos para estudos teológicos. Explore debates, vídeos e contribua com nosso trabalho.</p>
+            
+            <div class="cards-grid">
+                <div class="card" onclick="showPage('debates')">
+                    <div class="card-content">
+                        <h3>📖 Debates Teológicos</h3>
+                        <p>Artigos e reflexões sobre temas atuais e históricos da teologia</p>
+                    </div>
+                </div>
+                <div class="card" onclick="showPage('videos')">
+                    <div class="card-content">
+                        <h3>🎥 Vídeos Selecionados</h3>
+                        <p>Conteúdo em vídeo sobre teologia, apologética e estudos bíblicos</p>
+                    </div>
+                </div>
+                <div class="card" onclick="showPage('apoia-se')">
+                    <div class="card-content">
+                        <h3>💝 Apoie o Projeto</h3>
+                        <p>Contribua para mantermos este conteúdo gratuito e de qualidade</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página Debates -->
+        <div id="debates" class="page">
+            <div class="banner" onclick="openAmazonLink('https://amzn.to/3S4NdjH')">
+                <a href="#" onclick="return false;">📚 Apoie-nos comprando na Amazon!</a>
+            </div>
+            
+            <h2>Debates Teológicos</h2>
+            <input type="text" id="searchDebates" class="search-bar" placeholder="Pesquisar debates..." onkeyup="filterDebates()">
+            
+            <div class="filters" id="debateFilters"></div>
+            
+            <div id="debatesList" class="cards-grid"></div>
+        </div>
+
+        <!-- Página Vídeos -->
+        <div id="videos" class="page">
+            <h2>Vídeos Recomendados</h2>
+            <input type="text" id="searchVideos" class="search-bar" placeholder="Pesquisar vídeos por tema..." onkeyup="filterVideos()">
+            
+            <div class="filters" id="videoFilters"></div>
+            
+            <div id="videosList" class="video-grid"></div>
+        </div>
+
+        <!-- Página Apoia-se -->
+        <div id="apoia-se" class="page">
+            <div class="pix-section">
+                <h2>💝 Apoie o HUB Teológico</h2>
+                <p>Seu apoio é fundamental para continuarmos produzindo conteúdo de qualidade!</p>
+                
+                <div class="pix-container">
+                    <div class="pix-card">
+                        <div class="pix-icon">📱</div>
+                        <h3>Chave PIX Aleatória</h3>
+                        
+                        <div class="pix-key-wrapper">
+                            <input type="text" id="pixKey" class="pix-input" value="ee602ce7-ed3d-4acc-bd8f-5101fc2735d7" readonly>
+                            <button class="copy-btn" onclick="copiarPix()">
+                                Copiar
+                            </button>
+                        </div>
+                        
+                        <div id="copyFeedback" class="copy-feedback">
+                            ✅ Chave copiada com sucesso!
+                        </div>
+                        
+                        <div class="pix-divider">ou</div>
+                        
+                        <div class="qr-code-simulado">
+                            <div class="qr-placeholder">
+                                <span><img src="assets/pix-qr-code.png" alt="QR Code do PIX do Wellington."></span>
+                                <small>Escaneie com o app do seu banco</small>
+                            </div>
+                        </div>
+                        
+                        <div class="pix-info">
+                            <p>🔒 Segurança: Ao apoiar, seus dados bancários NÃO são compartilhados conosco.</p>
+                            <p>💚 Qualquer valor é bem-vindo e faz diferença!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para página de texto individual -->
+    <div id="textModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modalTextContent"></div>
+            <div id="modalAmazonBanner" class="amazon-banner-text"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <img src="assets/logo-hub.svg" alt="Logo do HUB Teológico.">
+            </div>
+            <div class="footer-section">
+                <h4>Mapa do Site</h4>
+                <a onclick="showPage('home')">HUB</a>
+                <a onclick="showPage('debates')">Debates</a>
+                <a onclick="showPage('videos')">Vídeos</a>
+                <a onclick="showPage('apoia-se')">Apoia-se</a>
+            </div>
+            <div class="footer-section">
+                <h4>Política de Privacidade</h4>
+                <a onclick="showPrivacyPolicy()">Política de Privacidade</a>
+                <a onclick="showTerms()">Termos de Uso</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contato</h4>
+                <p>Email: hubteologico.ht@gmail.com</p>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2024 HUB Teológico - Todos os direitos reservados | Desenvolvido por HUB Teológico
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

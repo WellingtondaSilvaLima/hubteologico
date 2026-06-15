@@ -1,0 +1,44 @@
+# robots.txt para HUB Teológico
+# Otimizado para SEO e segurança
+
+User-agent: *
+Allow: /
+Disallow: /cgi-bin/
+Disallow: /scripts/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+
+# Tempo de crawl - recomendado para sites de conteúdo
+Crawl-delay: 5
+
+# Sitemap do site
+Sitemap: https://www.seudominio.com.br/sitemap.xml
+
+# Google bots específicos
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 2
+
+# Bing bots
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 3
+
+# Proibir bots maliciosos conhecidos (opcional)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Regras para imagens (indexar imagens ajuda no SEO)
+User-agent: Googlebot-Image
+Allow: /
+
+# Indicar versão mobile (importante para SEO mobile-first)
+User-agent: Googlebot-Mobile
+Allow: /
