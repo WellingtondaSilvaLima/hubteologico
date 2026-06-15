@@ -483,24 +483,29 @@ function filterDebates() {
 function openDebate(debateId) {
     const debate = debatesData.find(d => d.id === debateId);
     if (debate) {
+        // Buscar o link do livro específico
+        const livroLink = LINKS_CONFIG.livros[debate.livroTema] || LINKS_CONFIG.amazonGeral;
+        
         const modalContent = document.getElementById('modalTextContent');
         modalContent.innerHTML = `
             <div class="text-page">
+                <!-- Banner no TOPO, antes do título -->
+                <div class="banner-texto-topo" onclick="openAmazonLink('${livroLink}')">
+                    <div class="banner-texto-conteudo">
+                        <span class="banner-icone">📚</span>
+                        <span class="banner-texto">Livro recomendado: ${debate.livroTema}</span>
+                        <span class="banner-cta">Clique aqui →</span>
+                    </div>
+                </div>
+                
                 <h1>${debate.titulo}</h1>
                 <div class="text-date">${formatDate(debate.data)} | Tema: ${debate.tema}</div>
                 <div class="text-body">${debate.conteudo}</div>
             </div>
         `;
         
-        // Adicionar banner específico do tema
-        const livroLink = LINKS_CONFIG.livros[debate.livroTema] || LINKS_CONFIG.livros['Apologética'];
-        const amazonDiv = document.getElementById('modalAmazonBanner');
-        amazonDiv.innerHTML = `
-            <div class="banner" onclick="openAmazonLink('${livroLink}')">
-                <a href="#" onclick="return false;">📚 Livros recomendados sobre ${debate.tema} - Clique para comprar na Amazon!</a>
-            </div>
-        `;
-        
+        // Limpar o banner inferior (já que movemos para cima)
+        document.getElementById('modalAmazonBanner').innerHTML = '';
         document.getElementById('textModal').style.display = 'block';
     }
 }
@@ -810,6 +815,47 @@ document.addEventListener('DOMContentLoaded', function() {
     setupPixClickToCopy();
 });
 
+// ========== MENU HAMBURGUER ==========
+const menuHamburguer = document.getElementById('menuHamburguer');
+const navLinks = document.getElementById('navLinks');
+const menuOverlay = document.getElementById('menuOverlay');
+
+function toggleMenu() {
+    menuHamburguer.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    menuOverlay.classList.toggle('active');
+    
+    // Prevenir scroll da página quando menu está aberto
+    if (navLinks.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
+}
+
+function closeMenu() {
+    menuHamburguer.classList.remove('active');
+    navLinks.classList.remove('active');
+    menuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Eventos do menu
+if (menuHamburguer) {
+    menuHamburguer.addEventListener('click', toggleMenu);
+}
+
+if (menuOverlay) {
+    menuOverlay.addEventListener('click', closeMenu);
+}
+
+// Fechar menu ao redimensionar para desktop
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+        closeMenu();
+    }
+});
+
 // Inicialização
 function init() {
     createFilters();
@@ -821,6 +867,11 @@ function init() {
     if (hash && ['home', 'debates', 'videos', 'apoia-se'].includes(hash)) {
         showPage(hash);
     }
+    
+    // Fechar menu ao clicar em qualquer link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
 }
 
 init();

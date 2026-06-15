@@ -9,7 +9,7 @@
     <meta name="robots" content="index, follow">
 
     <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" href="assets/logo-hub.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/favico.svg" type="image/x-icon">
     
     <title>HUB Teológico - Recursos para Estudos Teológicos</title>
     
@@ -18,17 +18,28 @@
     <header>
         <nav class="navbar">
             <div class="logo-container">
-                <div class="logo-icon"><img src="assets/logo-hub.svg" alt="Logo do HUB Teológico."></div>
-                <div class="logo-text">HUB <span>Teológico</span></div>
+                <div class="logo-texto"><img src="assets/logo-hub.svg" alt="Logo do HUB"></div>
             </div>
-            <ul class="nav-links">
-                <li><a onclick="showPage('home')">🏠 HUB</a></li>
-                <li><a onclick="showPage('debates')">📖 Debates</a></li>
-                <li><a onclick="showPage('videos')">🎥 Vídeos</a></li>
-                <li><a onclick="showPage('apoia-se')">💝 Apoia-se</a></li>
+            
+            <!-- Botão Hamburguer (só aparece no mobile) -->
+            <div class="menu-hamburguer" id="menuHamburguer">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <!-- Menu Desktop / Mobile -->
+            <ul class="nav-links" id="navLinks">
+                <li><a onclick="showPage('home'); closeMenu()">🏠 HUB</a></li>
+                <li><a onclick="showPage('debates'); closeMenu()">📖 Textos</a></li>
+                <li><a onclick="showPage('videos'); closeMenu()">🎥 Aulas</a></li>
+                <li><a onclick="showPage('apoia-se'); closeMenu()">💝 Apoia-se</a></li>
             </ul>
         </nav>
     </header>
+
+    <!-- Overlay para fechar menu ao clicar fora -->
+    <div class="menu-overlay" id="menuOverlay"></div>
 
     <main class="container">
         <!-- Página HUB -->
@@ -38,18 +49,18 @@
             </div>
             
             <h2>Bem-vindo ao HUB Teológico</h2>
-            <p>Seu centro de recursos para estudos teológicos. Explore debates, vídeos e contribua com nosso trabalho.</p>
+            <p>Seu centro de recursos para estudos teológicos. Explore textos, aulas e contribua com nosso trabalho.</p>
             
             <div class="cards-grid">
                 <div class="card" onclick="showPage('debates')">
                     <div class="card-content">
-                        <h3>📖 Debates Teológicos</h3>
+                        <h3>📖 Textos Teológicos</h3>
                         <p>Artigos e reflexões sobre temas atuais e históricos da teologia</p>
                     </div>
                 </div>
                 <div class="card" onclick="showPage('videos')">
                     <div class="card-content">
-                        <h3>🎥 Vídeos Selecionados</h3>
+                        <h3>🎥 Aulas Selecionadas</h3>
                         <p>Conteúdo em vídeo sobre teologia, apologética e estudos bíblicos</p>
                     </div>
                 </div>
@@ -68,7 +79,7 @@
                 <a href="#" onclick="return false;">📚 Apoie-nos comprando na Amazon!</a>
             </div>
             
-            <h2>Debates Teológicos</h2>
+            <h2>Textos Teológicos</h2>
             <input type="text" id="searchDebates" class="search-bar" placeholder="Pesquisar debates..." onkeyup="filterDebates()">
             
             <div class="filters" id="debateFilters"></div>
@@ -78,7 +89,7 @@
 
         <!-- Página Vídeos -->
         <div id="videos" class="page">
-            <h2>Vídeos Recomendados</h2>
+            <h2>Aulas Recomendados</h2>
             <input type="text" id="searchVideos" class="search-bar" placeholder="Pesquisar vídeos por tema..." onkeyup="filterVideos()">
             
             <div class="filters" id="videoFilters"></div>
@@ -144,8 +155,8 @@
             <div class="footer-section">
                 <h4>Mapa do Site</h4>
                 <a onclick="showPage('home')">HUB</a>
-                <a onclick="showPage('debates')">Debates</a>
-                <a onclick="showPage('videos')">Vídeos</a>
+                <a onclick="showPage('debates')">Textos</a>
+                <a onclick="showPage('videos')">Aulas</a>
                 <a onclick="showPage('apoia-se')">Apoia-se</a>
             </div>
             <div class="footer-section">
