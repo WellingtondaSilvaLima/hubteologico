@@ -6,8 +6,8 @@ const LINKS_CONFIG = {
     livros: {
         'Calvinismo': 'https://www.amazon.com.br/hz/wishlist/ls/2I1OHVAE5OF1F?tag=familialim0bb-20',
         'Teologia esfria o crente?': 'https://amzn.to/3QhiZJJ',
-        'Arminianismo': 'https://amzn.to/4vUomha',
-        'Teologia Sistemática': 'https://amzn.to/43BoZQw'
+        'Arminianismo': 'https://www.amazon.com.br/hz/wishlist/ls/21T94KHH5ALPA?tag=familialim0bb-20',
+        'Teologia Sistemática': 'https://www.amazon.com.br/hz/wishlist/ls/3ITWS6V65IGHG?tag=familialim0bb-20'
     }
 };
 
