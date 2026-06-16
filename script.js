@@ -4,10 +4,10 @@ const LINKS_CONFIG = {
     amazonGeral: 'https://amzn.to/3S4NdjH',
     // Links de livros por tema
     livros: {
-        'O cristão reformado: uma introdução bíblica aos pilares do protestantismo': 'https://amzn.to/4gmIio4',
+        'Calvinismo': 'https://www.amazon.com.br/hz/wishlist/ls/2I1OHVAE5OF1F?tag=familialim0bb-20',
         'Teologia esfria o crente?': 'https://amzn.to/3QhiZJJ',
-        'Arminianismo - A mecânica da salvação': 'https://amzn.to/4vUomha',
-        'Teologia sistemática (grudem): 2ª ed. revisada e ampliada': 'https://amzn.to/43BoZQw'
+        'Arminianismo': 'https://amzn.to/4vUomha',
+        'Teologia Sistemática': 'https://amzn.to/43BoZQw'
     }
 };
 
@@ -16,7 +16,7 @@ const debatesData = [
     {
         id: 1,
         titulo: "Calvinismo: Entendendo as Doutrinas da Graça",
-        tema: "Soteriologia",
+        tema: "Calvinismo",
         data: "2026-06-15",
         resumo: "O calvinismo é um sistema teológico que enfatiza a soberania de Deus na salvação. Este artigo explora sua origem histórica com João Calvino, o desenvolvimento em Genebra, e os famosos Cinco Pontos (TULIP): Depravação Total, Eleição Incondicional, Expiação Limitada, Graça Irresistível e Perseverança dos Santos. Uma análise aprofundada sobre como essas doutrinas interligadas formam uma visão coesa da salvação como obra inteiramente de Deus.",
         conteudo: `
@@ -64,7 +64,7 @@ const debatesData = [
             <h2>Conclusão</h2>
             <p>O calvinismo representa uma das tradições teológicas mais influentes do cristianismo protestante. Seus cinco pontos formam uma estrutura teológica que explica não apenas a salvação, mas também a natureza da interação entre a soberania divina e a condição humana. O sistema como um todo reflete a visão calvinista de uma salvação que é inteiramente obra de Deus, desde a eleição até a preservação final dos santos. Embora gere debates intensos, continua sendo uma posição teológica respeitada e amplamente adotada em diversas denominações reformadas ao redor do mundo.</p>
         `,
-        livroTema: "O cristão reformado: uma introdução bíblica aos pilares do protestantismo"
+        livroTema: "Calvinismo"
     },
     {
         id: 2,
@@ -142,7 +142,7 @@ const debatesData = [
     {
         id: 3,
         titulo: "O que é o Arminianismo? História, Doutrinas e Diferenças do Calvinismo",
-        tema: "Soteriologia",
+        tema: "Arminianismo",
         data: "2026-06-15",
         resumo: "O arminianismo surgiu no início do século XVII como uma reação ao calvinismo estrito, liderado pelo teólogo holandês Jacobus Arminius (1560-1609). Este artigo explora a origem e contexto histórico do movimento, a vida de Arminius, o conflito com Gomarus em Leiden, e a formulação da Remonstrância de 1610. Apresenta os Cinco Artigos do Arminianismo: Graça Preveniente (Deus capacita todos a responder), Eleição Condicional (baseada na presciência divina da fé), Expiação Ilimitada (Cristo morreu por todos), Graça Resistível (o homem pode rejeitar a Deus) e Segurança Condicional (é possível perder a salvação). Compara cada ponto com o Calvinismo (TULIP) e discute o impacto do Sínodo de Dort (1618-1619).",
         conteudo: `
@@ -221,7 +221,7 @@ const debatesData = [
             <h2>Conclusão</h2>
             <p>O arminianismo representa uma das tradições teológicas mais influentes dentro do cristianismo protestante, oferecendo uma perspectiva que enfatiza o amor universal de Deus, o livre-arbítrio humano e a responsabilidade individual na salvação. Embora tenha sido condenado no Sínodo de Dort, suas ideias persistiram e influenciaram profundamente denominações como o Metodismo, o Anglicanismo e diversos movimentos de santidade e pentecostais. O debate entre calvinistas e arminianos continua até hoje, enriquecendo a reflexão teológica sobre a relação entre a soberania divina e a responsabilidade humana.</p>
         `,
-        livroTema: "Arminianismo - A mecânica da salvação"
+        livroTema: "Arminianismo"
     },
     {
         id: 4,
@@ -382,7 +382,7 @@ const debatesData = [
             <h2>Conclusão</h2>
             <p>A teologia sistemática é uma ferramenta indispensável para o crescimento na fé cristã. Ela não apenas organiza o conhecimento bíblico de forma coerente, mas também transforma vidas à medida que aplicamos suas verdades no dia a dia. Como disse Anselmo de Cantuária, "teologia é fé em busca de entendimento". Que possamos, através do estudo da teologia sistemática, conhecer mais a Deus e amá-lo mais profundamente.</p>
         `,
-        livroTema: "Teologia sistemática (grudem): 2ª ed. revisada e ampliada"
+        livroTema: "Teologia Sistemática"
     }
 ];
 
@@ -493,7 +493,7 @@ function openDebate(debateId) {
                 <div class="banner-texto-topo" onclick="openAmazonLink('${livroLink}')">
                     <div class="banner-texto-conteudo">
                         <span class="banner-icone">📚</span>
-                        <span class="banner-texto">Livro recomendado: ${debate.livroTema}</span>
+                        <span class="banner-texto">Livros recomendados sobre ${debate.tema}</span>
                         <span class="banner-cta">Clique aqui →</span>
                     </div>
                 </div>
