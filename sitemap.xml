@@ -5,26 +5,26 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     
     <url>
-        <loc>https://www.seudominio.com.br/</loc>
+        <loc>https://wellingtondasilvalima.github.io/hubteologico/</loc>
         <lastmod>2024-01-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     
     <url>
-        <loc>https://www.seudominio.com.br/#debates</loc>
+        <loc>https://wellingtondasilvalima.github.io/hubteologico/#debates</loc>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     
     <url>
-        <loc>https://www.seudominio.com.br/#videos</loc>
+        <loc>https://wellingtondasilvalima.github.io/hubteologico/#videos</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
-        <loc>https://www.seudominio.com.br/#apoia-se</loc>
+        <loc>https://wellingtondasilvalima.github.io/hubteologico/#apoia-se</loc>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>

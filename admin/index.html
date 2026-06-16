@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin - HUB Teológico</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0a0a0a;
+            --primary-black: #121212;
+            --primary-gray: #1e1e1e;
+            --border-color: #333333;
+            --accent-tech: #00a8ff;
+            --accent-purple: #6c5ce7;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --success: #00e676;
+            --danger: #ff1744;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--primary-black);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        /* ====== LOGIN ====== */
+        .login-container, .admin-container {
+            background: var(--primary-gray);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .login-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-title h1 {
+            background: linear-gradient(135deg, var(--accent-tech), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .login-title p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--primary-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-tech);
+            box-shadow: 0 0 10px rgba(0, 168, 255, 0.3);
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, var(--accent-tech), var(--accent-purple));
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 168, 255, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--primary-dark);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+        }
+
+        .error-msg {
+            color: var(--danger);
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .error-msg.show {
+            display: block;
+        }
+
+        /* ====== ADMIN ====== */
+        .admin-container {
+            max-width: 900px;
+            display: none;
+        }
+
+        .admin-container.active {
+            display: block;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .admin-header h2 {
+            color: var(--accent-tech);
+        }
+
+        .btn-logout {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid var(--danger);
+            color: var(--danger);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-logout:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        .tab-nav {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.6rem 1.2rem;
+            background: var(--primary-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            border-color: var(--accent-tech);
+            color: var(--accent-tech);
+            background: rgba(0, 168, 255, 0.1);
+        }
+
+        .tab-btn:hover {
+            border-color: var(--accent-tech);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .item-card {
+            background: var(--primary-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .item-card h4 {
+            color: var(--accent-tech);
+            margin-bottom: 0.5rem;
+        }
+
+        .item-card .meta {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-card .actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .item-card .actions button {
+            padding: 0.3rem 0.8rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.8rem;
+        }
+
+        .btn-edit {
+            background: var(--accent-tech);
+            color: white;
+        }
+
+        .btn-delete {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-add {
+            padding: 0.5rem 1rem;
+            background: var(--success);
+            color: var(--primary-dark);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .btn-save-all {
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--accent-tech), var(--accent-purple));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .btn-save-all:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 168, 255, 0.4);
+        }
+
+        .status-msg {
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .status-msg.success {
+            display: block;
+            background: rgba(0, 230, 118, 0.2);
+            border: 1px solid var(--success);
+            color: var(--success);
+        }
+
+        .status-msg.error {
+            display: block;
+            background: rgba(255, 23, 68, 0.2);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--primary-gray);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-content h3 {
+            color: var(--accent-tech);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-content .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--primary-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .modal-actions button {
+            flex: 1;
+            padding: 0.6rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-modal-save {
+            background: var(--success);
+            color: var(--primary-dark);
+        }
+
+        .btn-modal-cancel {
+            background: var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 600px) {
+            .login-container, .admin-container {
+                padding: 1.5rem;
+            }
+            .tab-nav {
+                flex-direction: column;
+            }
+            .item-card .actions {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== LOGIN ====== -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-title">
+            <h1>🔐 HUB Teológico</h1>
+            <p>Painel Administrativo</p>
+        </div>
+        
+        <button class="btn-primary" onclick="handleLogin()" style="font-size: 1.2rem; padding: 1rem;">
+            <span style="margin-right: 0.5rem;">🔑</span> Entrar com GitHub
+        </button>
+        
+        <p style="text-align: center; margin-top: 1.5rem; color: var(--text-secondary); font-size: 0.85rem;">
+            Você será redirecionado para autenticação no GitHub<br>
+            <small>Escopos necessários: repo, workflow</small>
+        </p>
+        
+        <div id="loginStatus" style="text-align: center; margin-top: 1rem; color: var(--text-secondary);"></div>
+    </div>
+
+    <!-- ====== PAINEL ADMIN ====== -->
+    <div class="admin-container" id="adminContainer">
+        <div class="admin-header">
+            <h2>📊 Painel Admin</h2>
+            <button class="btn-logout" onclick="handleLogout()">🚪 Sair</button>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tab-nav">
+            <button class="tab-btn active" data-tab="debates" onclick="switchTab('debates')">📖 Debates</button>
+            <button class="tab-btn" data-tab="videos" onclick="switchTab('videos')">🎥 Aulas</button>
+            <button class="tab-btn" data-tab="livros" onclick="switchTab('livros')">📚 Livros</button>
+        </div>
+
+        <!-- Tab Debates -->
+        <div class="tab-content active" id="tab-debates">
+            <button class="btn-add" onclick="openModal('debate')">➕ Novo Texto</button>
+            <div id="debatesList"></div>
+        </div>
+
+        <!-- Tab Vídeos -->
+        <div class="tab-content" id="tab-videos">
+            <button class="btn-add" onclick="openModal('video')">➕ Nova Aula</button>
+            <div id="videosList"></div>
+        </div>
+
+        <!-- Tab Livros -->
+        <div class="tab-content" id="tab-livros">
+            <button class="btn-add" onclick="openModal('livro')">➕ Novo Livro</button>
+            <div id="livrosList"></div>
+        </div>
+
+        <button class="btn-save-all" onclick="saveAll()">💾 Salvar Todas as Alterações</button>
+        <div class="status-msg" id="statusMsg"></div>
+    </div>
+
+    <!-- ====== MODAL ====== -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Editar</h3>
+            <div id="modalBody"></div>
+            <div class="modal-actions">
+                <button class="btn-modal-save" onclick="saveModal()">💾 Salvar</button>
+                <button class="btn-modal-cancel" onclick="closeModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

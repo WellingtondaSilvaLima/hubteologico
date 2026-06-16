@@ -1,0 +1,29 @@
+name: Update Content
+
+on:
+  push:
+    paths:
+      - 'data/content.json'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Validate JSON
+        run: |
+          if ! jq empty data/content.json; then
+            echo "❌ JSON inválido!"
+            exit 1
+          fi
+          echo "✅ JSON válido!"
+      
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/content.json
+          git commit -m "Update content via admin" || echo "No changes"
+          git push || echo "No changes"

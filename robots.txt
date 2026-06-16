@@ -13,7 +13,7 @@ Disallow: /temp/
 Crawl-delay: 5
 
 # Sitemap do site
-Sitemap: https://www.seudominio.com.br/sitemap.xml
+Sitemap: https://wellingtondasilvalima.github.io/hubteologico/sitemap.xml
 
 # Google bots específicos
 User-agent: Googlebot
