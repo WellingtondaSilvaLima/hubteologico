@@ -414,6 +414,48 @@ const videosData = [
         tema: "História da Igreja",
         url: "https://www.youtube.com/embed/C3CywrA5wOY",
         descricao: "Curso de História da Igreja do canal do 'Jardel Fernandes Oficial'."
+    },
+    {
+        id: 5,
+        titulo: "Ortodoxia e Heresia",
+        tema: "História da Igreja",
+        url: "https://www.youtube.com/embed/Pmx5218FqBg",
+        descricao: "Curso de História da Igreja do canal do 'Jardel Fernandes Oficial'."
+    },
+    {
+        id: 6,
+        titulo: "O Cânon o Credo e os Bispos (Parte 1)",
+        tema: "História da Igreja",
+        url: "https://www.youtube.com/embed/X0MzMBPami8",
+        descricao: "Curso de História da Igreja do canal do 'Jardel Fernandes Oficial'."
+    },
+    {
+        id: 7,
+        titulo: "O Cânon o Credo e os Bispos (Parte 2)",
+        tema: "História da Igreja",
+        url: "https://www.youtube.com/embed/ITW46J0c9j8",
+        descricao: "Curso de História da Igreja do canal do 'Jardel Fernandes Oficial'."
+    },
+    {
+        id: 8,
+        titulo: "Os Pais da Igreja",
+        tema: "História da Igreja",
+        url: "https://www.youtube.com/embed/D4jyYFyRt6w",
+        descricao: "Curso de História da Igreja do canal do 'Jardel Fernandes Oficial'."
+    },
+    {
+        id: 9,
+        titulo: "Os Cristãos Primitivos (Parte 1)",
+        tema: "História da Igreja",
+        url: "https://www.youtube.com/embed/9pKehqDaX-Y",
+        descricao: "Curso de História da Igreja do canal do 'Jardel Fernandes Oficial'."
+    },
+    {
+        id: 10,
+        titulo: "Os Cristãos Primitivos (Parte 2)",
+        tema: "História da Igreja",
+        url: "https://www.youtube.com/embed/kLdo3ZHBIrA",
+        descricao: "Curso de História da Igreja do canal do 'Jardel Fernandes Oficial'."
     }
 ];
 
